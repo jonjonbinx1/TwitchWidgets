@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const ticker = document.getElementById('ticker');
-    const dataUrl = 'https://jonjonbinx1.github.io/TwitchWidgets/ticker-data.txt';
+    const dataUrl = 'https://jonjonbinx1.github.io/TwitchWidgets/TickerTape/ticker-data.txt';
 
     function fetchAndDisplayTicker() {
         fetch(dataUrl)
             .then(response => response.text())
             .then(data => {
                 ticker.innerHTML = '';
-                
+
                 const lines = data.split('\n');
                 lines.forEach(line => {
                     if (line.trim() !== '') {
