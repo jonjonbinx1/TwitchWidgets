@@ -1,13 +1,13 @@
 #newsContainer {
     width: 100%;
     background: linear-gradient(to right, #002147, #26466D);
-    color: #FFD700; /* Make the text gold */
+    color: #FFD700; /* Gold text color */
     padding: 10px;
     box-sizing: border-box;
     border: 2px solid #FFFFFF;
     border-radius: 10px;
     font-family: Arial, sans-serif;
-    font-size: 22px; /* Increase font size for better visibility */
+    font-size: 40px; /* Increase font size for better visibility */
     font-weight: bold;
     position: relative;
     overflow: hidden;
@@ -17,8 +17,8 @@
 
 #ticker {
     display: inline-block;
-    padding-right: 100%;
-    animation: ticker 10s linear infinite paused; /* Placeholder for dynamic control */
+    animation: ticker 20s linear infinite; /* Slow down the animation */
+    white-space: nowrap;
 }
 #newsContainer::before {
     content: "Breaking News:";
