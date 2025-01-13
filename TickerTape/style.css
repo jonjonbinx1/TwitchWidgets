@@ -1,23 +1,24 @@
 #newsContainer {
     width: 100%;
-    background: linear-gradient(to right, #002147, #26466D); /* News-style gradient background */
-    color: white;
+    background: linear-gradient(to right, #002147, #26466D);
+    color: #FFD700; /* Make the text gold */
     padding: 10px;
     box-sizing: border-box;
     border: 2px solid #FFFFFF;
     border-radius: 10px;
     font-family: Arial, sans-serif;
-    font-size: 18px;
+    font-size: 22px; /* Increase font size for better visibility */
     font-weight: bold;
     position: relative;
     overflow: hidden;
     white-space: nowrap;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better contrast */
 }
 
 #ticker {
     display: inline-block;
     padding-right: 100%;
-    animation: ticker 10s linear infinite;
+    animation: ticker 10s linear infinite paused; /* Placeholder for dynamic control */
 }
 #newsContainer::before {
     content: "Breaking News:";
