@@ -1,15 +1,34 @@
-#ticker {
+#newsContainer {
+    width: 100%;
+    background: linear-gradient(to right, #002147, #26466D); /* News-style gradient background */
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
     overflow: hidden;
     white-space: nowrap;
-    box-sizing: border-box;
 }
 
-.ticker-item {
+#ticker {
     display: inline-block;
     padding-right: 100%;
     animation: ticker 10s linear infinite;
 }
-
+#newsContainer::before {
+    content: "Breaking News:";
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
 @keyframes ticker {
     from { transform: translate3d(100%, 0, 0); }
     to { transform: translate3d(-100%, 0, 0); }
