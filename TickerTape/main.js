@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const ticker = document.getElementById('ticker');
-    const dataUrl = 'https://jonjonbinx1.github.io/TwitchWidgets/ticker-data.txt'; // Update with your actual URL
+    const dataUrl = 'https://jonjonbinx1.github.io/TwitchWidgets/TickerTape/ticker-data.txt'; // Update with your actual URL
 
     async function fetchAndDisplayTicker() {
         try {
