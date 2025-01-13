@@ -1,37 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
     const ticker = document.getElementById('ticker');
-    const dataUrl = 'https://raw.githubusercontent.com/jonjonbinx1/TwitchWidgets/main/TickerTape/ticker-data.txt'; // Update with your actual URL
+    const dataUrl = 'https://jonjonbinx1.github.io/TwitchWidgets/ticker-data.txt'; // Update with your actual URL
 
-    function fetchAndDisplayTicker() {
-        fetch(dataUrl)
-            .then(response => {
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    throw new Error('Network response was not OK');
-                }
-            })
-            .then(data => {
-                ticker.innerHTML = '';
+    async function fetchAndDisplayTicker() {
+        try {
+            const response = await fetch(dataUrl);
+            if (!response.ok) {
+                throw new Error(`Network response was not OK: ${response.statusText}`);
+            }
+            
+            const data = await response.text();
+            console.log("Fetched Data:", data); // Diagnostic log
 
-                const lines = data.split('\n').filter(line => line.trim() !== '');
-                const continuousText = lines.join(' | ');
+            ticker.innerHTML = '';
 
-                const tickerItem = document.createElement('div');
-                tickerItem.className = 'ticker-item';
-                tickerItem.textContent = continuousText;
-                ticker.appendChild(tickerItem);
+            const lines = data.split('\n').filter(line => line.trim() !== '');
+            const continuousText = lines.join(' | ');
 
-                const tickerWidth = ticker.offsetWidth;
-                const containerWidth = document.getElementById('newsContainer').offsetWidth;
-                const animationDuration = (tickerWidth + containerWidth) / 20;
+            const tickerItem = document.createElement('div');
+            tickerItem.className = 'ticker-item';
+            tickerItem.textContent = continuousText;
+            ticker.appendChild(tickerItem);
 
-                ticker.style.animation = `ticker ${animationDuration}s linear infinite`;
-            })
-            .catch(error => {
-                console.error('Error fetching text file:', error);
-            });
+            const tickerWidth = ticker.offsetWidth;
+            const containerWidth = document.getElementById('newsContainer').offsetWidth;
+            const animationDuration = (tickerWidth + containerWidth) / 20;
+            
+            ticker.style.animation = `ticker ${animationDuration}s linear infinite`;
+        } catch (error) {
+            console.error('Error fetching text file:', error); // Enhanced error logging
+        }
     }
 
+    // Initial fetch and display
     fetchAndDisplayTicker();
 });
