@@ -1,0 +1,3 @@
+Type "!poll <your input>" to add your input to the poll!
+Follow the channel on instagram @jonjon_binx
+Want To Suggest a Feature for the Chat? Say so in Chat and I'll See What I Can Code Up!
