@@ -1,39 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     const ticker = document.getElementById('ticker');
+    const fileInput = document.getElementById('fileInput');
 
-    function fetchAndDisplayTicker() {
-        fetch('tickerTape.json')
-            .then(response => response.json())
-            .then(data => {
-                ticker.innerHTML = '';
-                
-                data.forEach(entry => {
+    function readFileContent(file) {
+        const reader = new FileReader();
+        
+        reader.onload = (event) => {
+            const lines = event.target.result.split('\n');
+            ticker.innerHTML = '';
+
+            lines.forEach(line => {
+                if (line.trim() !== '') {
                     const tickerItem = document.createElement('div');
                     tickerItem.className = 'ticker-item';
-                    tickerItem.textContent = entry.text;
+                    tickerItem.textContent = line;
                     ticker.appendChild(tickerItem);
-                });
+                }
+            });
 
-                // Clone the ticker content for looping effect
-                const clone = ticker.cloneNode(true);
-                ticker.appendChild(clone);
+            const clone = ticker.cloneNode(true);
+            ticker.appendChild(clone);
 
-                // Restart the ticker animation
-                resetTickerAnimation();
-            })
-            .catch(error => console.error('Error fetching JSON:', error));
+            resetTickerAnimation();
+        };
+
+        reader.readAsText(file);
     }
 
     function resetTickerAnimation() {
-        // Trigger reflow to restart CSS animation
         ticker.style.animation = 'none';
-        ticker.offsetHeight; // Trigger reflow
+        ticker.offsetHeight;
         ticker.style.animation = null;
     }
 
-    // Fetch and display the ticker on load
-    fetchAndDisplayTicker();
-
-    // Set an interval to reload the ticker data every X seconds (e.g., 60 seconds)
-    setInterval(fetchAndDisplayTicker, 60000);
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            readFileContent(file);
+        } else {
+            console.error('Please select a valid text file.');
+        }
+    });
 });

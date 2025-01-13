@@ -3,27 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticker Tape Widget</title>
-    <style>
-        #ticker {
-            overflow: hidden;
-            white-space: nowrap;
-            box-sizing: border-box;
-        }
-
-        .ticker-item {
-            display: inline-block;
-            padding-right: 100%;
-            animation: ticker 10s linear infinite;
-        }
-
-        @keyframes ticker {
-            from { transform: translate3d(100%, 0, 0); }
-            to { transform: translate3d(-100%, 0, 0); }
-        }
-    </style>
+    <title>User-Selected Ticker Tape Widget</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <input type="file" id="fileInput">
     <div id="ticker"></div>
     <script src="tickerTape.js"></script>
 </body>
