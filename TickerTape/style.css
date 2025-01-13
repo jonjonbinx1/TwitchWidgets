@@ -13,11 +13,11 @@
     overflow: hidden;
     white-space: nowrap;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for better contrast */
+    padding-left: 150px; /* Add padding to prevent overlapping */
 }
 
 #ticker {
     display: inline-block;
-    animation: ticker 20s linear infinite; /* Slow down the animation */
     white-space: nowrap;
 }
 #newsContainer::before {

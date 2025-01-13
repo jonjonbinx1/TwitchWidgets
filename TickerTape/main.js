@@ -20,19 +20,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayNextTickerItem() {
         if (currentIndex < lines.length) {
             const line = lines[currentIndex];
+            const formattedLine = line.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // Ensure HTML is not interpreted
             const tickerItem = document.createElement('div');
             tickerItem.className = 'ticker-item';
-            tickerItem.textContent = line + ' |'; // Add pipe at the end
+            tickerItem.textContent = formattedLine + ' |'; // Add pipe at the end
             ticker.innerHTML = '';
             ticker.appendChild(tickerItem);
 
-            // Adjust animation duration to slow down the text
-            ticker.style.animation = 'ticker 20s linear infinite';
+            // Calculate animation duration to slow down the text
+            const tickerWidth = ticker.offsetWidth;
+            const containerWidth = document.getElementById('newsContainer').offsetWidth;
+            const animationDuration = (tickerWidth + containerWidth) / 50; // Adjust speed as needed
+            
+            ticker.style.animation = `ticker ${animationDuration}s linear`;
             
             setTimeout(() => {
                 currentIndex++;
                 displayNextTickerItem();
-            }, 20000); // Adjust interval to match the slow animation time
+            }, animationDuration * 1000); // Match interval to the animation time
         } else {
             fetchAndDisplayTicker(); // Fetch new data when all lines have been displayed
         }
