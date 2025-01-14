@@ -3,54 +3,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const tickerContainer = document.getElementById('tickerContainer');
     const dataUrl = 'https://jonjonbinx1.github.io/TwitchWidgets/TickerTape/ticker-data.txt'; // Update with your actual URL
 
-    function fetchAndDisplayTicker() {
-        fetch(dataUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Network response was not OK: ${response.statusText}`);
-                }
-                return response.text();
-            })
-            .then(data => {
-                console.log("Fetched Data:", data); 
+    async function fetchAndDisplayTicker() {
+        try {
+            console.log("Starting to fetch data...");
 
-                const lines = data.split('\n').filter(line => line.trim() !== '');
-                console.log("Lines Array:", lines);
+            const response = await fetch(dataUrl);
+            if (!response.ok) {
+                throw new Error(`Network response was not OK: ${response.statusText}`);
+            }
 
-                if (lines.length > 0) {
-                    const continuousText = lines.join(' | ');
-                    console.log("Continuous Text:", continuousText);
+            const data = await response.text();
+            console.log("Fetched Data:", data); // Log fetched data
 
-                    const tickerItem = document.createElement('div');
-                    tickerItem.className = 'ticker-item';
-                    tickerItem.textContent = continuousText;
-                    ticker.innerHTML = '';
-                    ticker.appendChild(tickerItem);
+            ticker.innerHTML = '';
 
-                    const tickerWidth = ticker.offsetWidth;
-                    const containerWidth = tickerContainer.offsetWidth;
+            const lines = data.split('\n').map(line => line.trimStart()).filter(line => line);
+            console.log("Lines Array:", lines);
 
-                    return { tickerWidth, containerWidth, html: tickerItem.outerHTML };
-                } else {
-                    console.warn("No lines to display.");
-                    return null;
-                }
-            })
-            .then(({ tickerWidth, containerWidth, html }) => {
-                if (html) {
-                    const animationDuration = (tickerWidth + containerWidth) / 40; // Adjust speed as needed
+            if (lines.length > 0) {
+                const continuousText = lines.join(' | ');
+                console.log("Continuous Text:", continuousText);
 
-                    ticker.innerHTML = html;
-                    ticker.style.animation = `ticker ${animationDuration}s linear forwards`;
+                const tickerItem = document.createElement('div');
+                tickerItem.className = 'ticker-item';
+                tickerItem.textContent = continuousText;
+                ticker.innerHTML = '';
+                ticker.appendChild(tickerItem);
 
-                    setTimeout(() => {
-                        console.log("Animation completed.");
-                        ticker.style.animation = 'none';
-                    }, animationDuration * 1000);
-                }
-            })
-            .catch(error => console.error('Error fetching text file:', error));
+                const tickerWidth = ticker.offsetWidth;
+                const containerWidth = tickerContainer.offsetWidth;
+
+                const animationDuration = (tickerWidth + containerWidth) / 25; // Faster speed
+
+                // Apply animation with synchronous reflow
+                ticker.style.transition = 'none'; // Disable initial transition
+                ticker.offsetHeight; // Force synchronous reflow
+                ticker.style.transition = ''; // Re-enable transition
+                ticker.style.animation = `ticker ${animationDuration}s linear infinite`;
+                console.log("Ticker Animation Started Immediately");
+
+                ticker.addEventListener('animationiteration', () => {
+                    console.log("Animation Iteration - Continuing");
+                    fetchAndDisplayTicker();
+                });
+            } else {
+                console.warn("No lines to display.");
+            }
+        } catch (error) {
+            console.error('Error fetching text file:', error);
+        }
     }
 
     fetchAndDisplayTicker();
+    console.log("Fetching Data and Immediately Displaying Ticker..."); 
 });

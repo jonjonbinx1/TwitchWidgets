@@ -39,8 +39,14 @@
 #ticker {
     display: inline-block;
     white-space: nowrap;
+    animation: ticker 25s linear infinite; /* Initial animation set */
 }
+
 @keyframes ticker {
-    from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
+    from { 
+        transform: translateX(100%); 
+    }
+    to { 
+        transform: translateX(-100%); 
+    }
 }
