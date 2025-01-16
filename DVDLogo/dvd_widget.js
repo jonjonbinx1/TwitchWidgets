@@ -14,8 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let posX = Math.random() * (screenW - logoWidth - 10) + 5;
     let posY = Math.random() * (screenH - logoHeight - 10) + 5;
-    let speedX = 4;
-    let speedY = 4;
+    let speedX = 2;
+    let speedY = 2;
+    const pauseDuration = 1000; // Pause duration in milliseconds
 
     function getRandomColor() {
         return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
@@ -51,10 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (checkCornerHit()) {
             triggerConfetti();
-            // Restart the animation
-            posX = Math.random() * (screenW - logoWidth - 10) + 5;
-            posY = Math.random() * (screenH - logoHeight - 10) + 5;
-            background.style.backgroundColor = getRandomColor();
+            // Pause before restarting
+            setTimeout(() => {
+                posX = Math.random() * (screenW - logoWidth - 10) + 5;
+                posY = Math.random() * (screenH - logoHeight - 10) + 5;
+                background.style.backgroundColor = getRandomColor();
+                moveLogo();
+            }, pauseDuration);
+            return;
         }
 
         background.style.left = posX + 'px';
