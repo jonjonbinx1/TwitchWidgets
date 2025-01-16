@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenH = window.innerHeight - 10; // Adjust for border
 
     // Resize the logo
-    const logoWidth = 20; // Set your desired width
-    const logoHeight = 20; // Set your desired height
+    const logoWidth = 100; // Set your desired width
+    const logoHeight = 100; // Set your desired height
     logo.style.width = `${logoWidth}px`;
     logo.style.height = `${logoHeight}px`;
 
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let posX = Math.random() * (screenW - logoWidth - 10) + 5;
     let posY = Math.random() * (screenH - logoHeight - 10) + 5;
-    let speedX = 2;
-    let speedY = 1;
+    let speedX = 4;
+    let speedY = 4;
 
     function getRandomColor() {
         return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
