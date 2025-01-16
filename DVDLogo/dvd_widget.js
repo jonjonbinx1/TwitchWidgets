@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenW = 800;  // Width for the horizontal box
     const screenH = 200;  // Height for the horizontal box
 
-    const logoWidth = 50; // Set the desired logo width
-    const logoHeight = 50; // Set the desired logo height
+    const logoWidth = 75; // Set the desired logo width
+    const logoHeight = 75; // Set the desired logo height
     logo.style.width = `${logoWidth}px`;
     logo.style.height = `${logoHeight}px`;
 
@@ -14,11 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let posX = Math.random() * (screenW - logoWidth - 10) + 5;
     let posY = Math.random() * (screenH - logoHeight - 10) + 5;
-    let speedX = 3;
-    let speedY = 3;
+    let speedX = 4;
+    let speedY = 4;
 
     function getRandomColor() {
         return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+    }
+
+    function checkCornerHit() {
+        return ((posX <= 0 && posY <= 0) || 
+                (posX <= 0 && posY + logoHeight >= screenH - 1) || 
+                (posX + logoWidth >= screenW - 1 && posY <= 0) || 
+                (posX + logoWidth >= screenW - 1 && posY + logoHeight >= screenH - 1));
+    }
+
+    function triggerConfetti() {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
     }
 
     function moveLogo() {
@@ -31,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (posY <= 0 || posY + logoHeight >= screenH) {
             speedY = -speedY;
+            background.style.backgroundColor = getRandomColor();
+        }
+
+        if (checkCornerHit()) {
+            triggerConfetti();
+            // Restart the animation
+            posX = Math.random() * (screenW - logoWidth - 10) + 5;
+            posY = Math.random() * (screenH - logoHeight - 10) + 5;
             background.style.backgroundColor = getRandomColor();
         }
 
