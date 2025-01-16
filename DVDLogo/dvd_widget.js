@@ -1,19 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const logo = document.getElementById('logo');
     const background = document.getElementById('background');
-    const screenW = window.innerWidth - 10; // Adjust for border
-    const screenH = window.innerHeight - 10; // Adjust for border
+    const screenW = 800;  // Width for the horizontal box
+    const screenH = 200;  // Height for the horizontal box
 
-    // Resize the logo
-    const logoWidth = 20; // Set your desired width
-    const logoHeight = 20; // Set your desired height
+    const logoWidth = 20; // Set the desired logo width
+    const logoHeight = 20; // Set the desired logo height
     logo.style.width = `${logoWidth}px`;
     logo.style.height = `${logoHeight}px`;
 
-    // Background box width and height to be same as logo
-    background.style.width = logo.style.width;
-    background.style.height = logo.style.height;
-    
+    background.style.width = `${logoWidth}px`;
+    background.style.height = `${logoHeight}px`;
+
     let posX = Math.random() * (screenW - logoWidth - 10) + 5;
     let posY = Math.random() * (screenH - logoHeight - 10) + 5;
     let speedX = 2;
@@ -27,11 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         posX += speedX;
         posY += speedY;
 
-        if (posX <= 5 || posX + logoWidth >= screenW - 5) {
+        if (posX <= 0 || posX + logoWidth >= screenW) {
             speedX = -speedX;
             background.style.backgroundColor = getRandomColor();
         }
-        if (posY <= 5 || posY + logoHeight >= screenH - 5) {
+        if (posY <= 0 || posY + logoHeight >= screenH) {
             speedY = -speedY;
             background.style.backgroundColor = getRandomColor();
         }
