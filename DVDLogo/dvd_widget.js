@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenH = window.innerHeight;
 
     // Resize the image and the background box
-    const logoWidth = 10; // Set your desired width
-    const logoHeight = 20; // Set your desired height
+    const logoWidth = 15; // Set your desired width
+    const logoHeight = 15; // Set your desired height
     logo.style.width = `${logoWidth}px`;
     logo.style.height = `${logoHeight}px`;
-    background.style.width = `${logoWidth}px`;
-    background.style.height = `${logoHeight}px`;
+    background.style.width = `${logoWidth + 6}px`;  // Adjust for border
+    background.style.height = `${logoHeight + 6}px`;  // Adjust for border
     
-    let posX = Math.random() * (screenW - logoWidth);
-    let posY = Math.random() * (screenH - logoHeight);
+    let posX = Math.random() * (screenW - logoWidth - 6) + 3;
+    let posY = Math.random() * (screenH - logoHeight - 6) + 3;
     let speedX = 2;
-    let speedY = 2;
+    let speedY = 1;
 
     function getRandomColor() {
         return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         posX += speedX;
         posY += speedY;
 
-        if (posX <= 0 || posX + logoWidth >= screenW) {
+        if (posX <= 3 || posX + logoWidth + 3 >= screenW) {  // Consider border width
             speedX = -speedX;
             background.style.backgroundColor = getRandomColor();
         }
-        if (posY <= 0 || posY + logoHeight >= screenH) {
+        if (posY <= 3 || posY + logoHeight + 3 >= screenH) {  // Consider border width
             speedY = -speedY;
             background.style.backgroundColor = getRandomColor();
         }
