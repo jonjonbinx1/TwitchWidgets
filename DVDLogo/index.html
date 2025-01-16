@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom DVD Widget</title>
     <style>
-        body { margin: 0; overflow: hidden; background-color: black; }
-        #background { position: absolute; background-color: black; border: 3px solid white; }
-        #logo { position: absolute; }
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background-color: black; 
+            border: 5px solid white; /* Add border to the whole widget */
+            box-sizing: border-box; /* Include border in the element's total width and height */
+            width: calc(100vw - 10px); /* Adjust width for border */
+            height: calc(100vh - 10px); /* Adjust height for border */
+        }
+        #background {
+            position: absolute; 
+            background-color: black; 
+        }
+        #logo { 
+            position: absolute; 
+        }
     </style>
 </head>
 <body>
