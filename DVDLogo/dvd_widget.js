@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let posX = Math.random() * (screenW - logoWidth - 10) + 5;
     let posY = Math.random() * (screenH - logoHeight - 10) + 5;
-    let speedX = 2;
-    let speedY = 2;
+    let speedX = 3;
+    let speedY = 3;
 
     function getRandomColor() {
         return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
