@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Resize the image and the background box
     const logoWidth = 10; // Set your desired width
-    const logoHeight = 5; // Set your desired height
+    const logoHeight = 20; // Set your desired height
     logo.style.width = `${logoWidth}px`;
     logo.style.height = `${logoHeight}px`;
     background.style.width = `${logoWidth}px`;
