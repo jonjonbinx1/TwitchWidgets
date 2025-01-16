@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenW = 800;  // Width for the horizontal box
     const screenH = 200;  // Height for the horizontal box
 
-    const logoWidth = 20; // Set the desired logo width
-    const logoHeight = 20; // Set the desired logo height
+    const logoWidth = 50; // Set the desired logo width
+    const logoHeight = 50; // Set the desired logo height
     logo.style.width = `${logoWidth}px`;
     logo.style.height = `${logoHeight}px`;
 
