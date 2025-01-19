@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let posY = Math.random() * (screenH - logoHeight - 10) + 5;
     let speedX = 2;
     let speedY = 2;
-    const pauseDuration = 1000; // Pause duration in milliseconds
+    const pauseDuration = 8000; // Pause duration in milliseconds
 
     function getRandomColor() {
         return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
