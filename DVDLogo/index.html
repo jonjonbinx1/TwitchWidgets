@@ -21,10 +21,28 @@
         #logo { 
             position: absolute; 
         }
+        #bounceCount {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #0066CC; /* Electric blue color */
+            font-family: Arial, sans-serif;
+        }
+        #maxBounceCount {
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            font-size: 20;
+            color: #0066CC; /* Electric blue color */
+            font-family: Arial, sans-serif;
+        }
     </style>
 </head>
 <body>
     <div id="background"><img id="logo" src="custom_logo.png" alt="Custom Logo"></div>
+    <div id="bounceCount">Bounces: 0</div> <!-- Add this line -->
+    <div id="maxBounceCount"> Max This Stream: 0</div>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="dvd_widget.js"></script>
 </body>
