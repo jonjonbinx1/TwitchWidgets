@@ -34,7 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let direction = Math.random() < 0.5 ? -1 : 1; // Randomly choose -1 or 1
 
         // Adjust the force while keeping the same general path
-        return currentForce + (adjustment * direction);
+        let newForce = currentForce + (adjustment * direction);
+        if(Math.abs(newForce) > 5){
+            return 5 * Math.sign(currentForce);
+        }
+        return newForce;
     }
     
     function checkCornerHit() {
