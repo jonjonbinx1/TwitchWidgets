@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+  <title>Twitch Grid Widget</title>
+</head>
+<body>
+  <canvas id="gridCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById('gridCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawGrid();
+    }
+
+    function drawGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 1;
+      ctx.font = '12px Arial';
+      ctx.fillStyle = 'black';
+
+      const stepX = canvas.width / 10; // Divide width into 10 segments
+      const stepY = canvas.height / 10; // Divide height into 10 segments
+
+      // Draw vertical and horizontal grid lines and numbers
+      for (let x = 0; x <= canvas.width; x += stepX) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+        ctx.fillText(Math.round((x / canvas.width) * 100), x + 2, 12); // Add x-axis numbers
+      }
+
+      for (let y = 0; y <= canvas.height; y += stepY) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+        ctx.fillText(Math.round((y / canvas.height) * 100), 2, y - 2); // Add y-axis numbers
+      }
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+  </script>
+</body>
+</html>
